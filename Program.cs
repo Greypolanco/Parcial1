@@ -1,8 +1,13 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Parcial1.Data;
-
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+
+var ConStr = builder.Configuration.GetConnectionString("ConStr");
+builder.Services.AddDbContext<Context>(option => option.UseSqlite(ConStr));
+
+builder.Services.AddScoped<BooksGBLL>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
