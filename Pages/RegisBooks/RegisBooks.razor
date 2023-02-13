@@ -1,6 +1,6 @@
 @page "/BooksG"
 
-
+@inject BooksGBLL bookgbll
 <style>
     .card{
         width: 500px;
@@ -20,7 +20,7 @@
             <label class="form-label">Libro ID</label>
             <div id="Search">
                 <InputNumber class="form-control" @bind-Value= "book.Idbook"></InputNumber>
-                <button class="btn btn-info">Guardar</button>
+                <button class="btn btn-info" >Buscar</button>
             </div>
             <label class="form-label">Titulo</label>
             <InputText class="form-control" @bind-Value="book.tittle"></InputText>
@@ -41,4 +41,30 @@
     [Parameter]
 
     public BooksG book {get; set;}= new BooksG();
+
+    void New(){
+        book = new BooksG();
+    }
+
+    void Search()
+    {
+        if(Validate()==false) return;
+        var book_exist = bookgbll.Search(book.Idbook);
+        if(book_exist !=null)
+            book = book_exist;
+    }
+    void Save(){
+        if(bookgbll.Save(book))
+          New();
+    }
+
+    bool Validate()
+    {
+        if(string.IsNullOrEmpty(book.tittle))
+            return false;
+        if(book.prec <=0)
+            return false;
+        else    
+            return true;
+    }
 }
