@@ -5,6 +5,10 @@
     .card{
         width: 500px;
     }
+    #Search{
+        width: 200px;
+        display: flex;
+    }
 
 </style>
 <EditForm Model="book">
@@ -13,7 +17,15 @@
             <h1>Registro de Libros</h1>
         </div>
         <div class = "card-body">
-            
+            <label class="form-label">Libro ID</label>
+            <div id="Search">
+                <InputNumber class="form-control" @bind-Value= "book.Idbook"></InputNumber>
+                <button class="btn btn-info">Guardar</button>
+            </div>
+            <label class="form-label">Titulo</label>
+            <InputText class="form-control" @bind-Value="book.tittle"></InputText>
+            <label class="form-label">Precio</label>
+            <InputNumber class="form-control" @bind-Value= "book.prec"></InputNumber>
         </div>
         <div class = "card-footer">
             <button class = "btn btn-primary">Nuevo</button>
