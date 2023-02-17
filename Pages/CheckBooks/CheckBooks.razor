@@ -1,0 +1,36 @@
+@page "/Consulta"
+
+@inject BooksGBLL bookbll
+
+@code{
+
+    public List<BooksG> booklist = new List<BooksG>();
+    
+        protected override void OnInitialized()
+        {
+            booklist = bookbll.GetList(book => true);
+        }
+}
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Titulo</td>
+            <td>Precio</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var BookG in booklist)
+        {
+            <tr>
+                <td>@BookG.Idbook</td>
+                <td>@BookG.tittle</td>
+                <td>@BookG.prec</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
