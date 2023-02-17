@@ -30,7 +30,7 @@
         <div class = "card-footer">
             <button class = "btn btn-primary" @onclick="New" >Nuevo</button>
             <button class = "btn btn-success"@onclick ="Save">Guardar</button>
-            <button  class = "btn btn-danger">Eliminar</button>
+            <button  class = "btn btn-danger" @onclick = "Delete">Eliminar</button>
         </div>
     </div>
 
@@ -66,5 +66,10 @@
             return false;
         else    
             return true;
+    }
+
+    void Delete(){
+        if(bookgbll.Delete(book))
+            New();
     }
 }
